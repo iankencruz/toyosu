@@ -1,0 +1,21 @@
+---
+import Nav from '../components/Nav.astro'
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <Nav>
+      <a href="#">Homes</a>
+      <a href="#">Posts</a>
+      <a href="#">Contact</a>
+    </Nav>
+    <h1></h1>
+    <article>
+      <slot /> <!-- your content is injected here -->
+    </article>
+  </body>
+</html>
+
