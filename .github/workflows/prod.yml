@@ -34,7 +34,7 @@ jobs:
         uses: withastro/action@v1
         with:
           path: .
-          node-version: 18
+          node-version: 21.6.1
           package-manager: npm@18.14.1
 
           
