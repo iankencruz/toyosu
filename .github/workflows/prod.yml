@@ -1,0 +1,61 @@
+# Sample workflow for building and deploying an Astro site to GitHub Pages
+#
+# To get started with Astro see: https://docs.astro.build/en/getting-started/
+#
+name: Deploy VPS Env
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+  # Allows external webhook trigger
+  repository_dispatch:
+    types:
+      - webhook
+
+env:
+  BUILD_PATH: "." # default value when not using subfolders
+  # BUILD_PATH: subfolder
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v3
+
+        
+      - name: Build Site
+        uses: withastro/action@v1
+        with:
+          path: .
+          node-version: 18
+          package-manager: npm@18.14.1
+
+          
+      - name: Copy Contents to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "dist/*"
+          target: docker/caddy/www/${{ github.event.repository.name }}
+          strip_components: 1
+          rm: true
+          
+          
+      - name: Restart Caddy Container
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd ~/docker/caddy/www && ls           
+            cd ~/docker/caddy && echo ${{ secrets.PASSWORD }} | sudo -S docker compose restart caddy
