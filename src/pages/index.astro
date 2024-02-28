@@ -1,6 +1,11 @@
 ---
 import HeroLayout from "../layouts/HeroLayout.astro";
 import Nav from "../includes/Nav.astro";
+
+import directus from "../lib/directus";
+import { readSingleton } from "@directus/sdk";
+
+const global = await directus.request(readSingleton("global"));
 ---
 
 <HeroLayout>
@@ -13,7 +18,7 @@ import Nav from "../includes/Nav.astro";
         </div>
         <div class="relative" id="relative">
             <header class="bg-white bg-opacity-30">
-                <Nav />
+                <Nav title=`${global.title}` />
             </header>
         </div>
         <div class="relative isolate px-6 pt-14 lg:px-8">
