@@ -4,7 +4,6 @@ import Nav from "../includes/Nav.astro";
 
 import directus from "../lib/directus";
 import { readSingleton } from "@directus/sdk";
-
 const global = await directus.request(readSingleton("global"));
 ---
 
@@ -12,24 +11,25 @@ const global = await directus.request(readSingleton("global"));
     <!-- Start Hero Navigation -->
     <div class="w-screen h-screen">
         <div
-            class="absolute inset-0 bg-cover bg-center h-[64rem]"
+            class="absolute inset-0 bg-cover bg-center h-screen"
             style="background-image: url('https://media.graphassets.com/35JD9fRUS0eflP9njiIF?_gl=1*1o0wva1*_ga*OTg2MjcwMjMyLjE3MDI0Njk3MzY.*_ga_G6FYGSYGZ4*MTcwOTAzNzExOS4zMC4xLjE3MDkwMzc0MzguMTUuMC4w');"
         >
         </div>
         <div class="relative" id="relative">
             <header class="bg-white bg-opacity-30">
+                <!-- <Nav /> -->
                 <Nav title=`${global.title}` />
             </header>
         </div>
-        <div class="relative isolate px-6 pt-14 lg:px-8">
+        <div
+            class="absolute bottom-24 lg:bottom-32 left-24 isolate px-6 pt-14 lg:px-8"
+        >
             <div
-                class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+                class="inset-x-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
                 aria-hidden="true"
             >
             </div>
-            <div
-                class="max-w-124 mx-auto p-6 lg:px-8 bottom-0 py-32 sm:py-48 lg:py-[34rem]"
-            >
+            <div class="max-w-124 mx-auto p-6 lg:px-8 bottom-0">
                 <div class="text-left">
                     <h1
                         class="text-6xl font-bold tracking-tight text-gray-100 sm:text-[6.5rem] font-[Raleway] font-black"
