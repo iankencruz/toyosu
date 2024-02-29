@@ -34,7 +34,8 @@ const global = await directus.request(readSingleton("global"));
                     <h1
                         class="text-6xl font-bold tracking-tight text-gray-100 sm:text-[6.5rem] font-[Raleway] font-black"
                     >
-                        Dining. <br /> Redefined.
+                        <!-- Dining. <br /> Redefined. -->
+                        <div set:html={global.description} />
                     </h1>
                 </div>
             </div>
