@@ -1,5 +1,5 @@
 ---
-
+import Footer from "../includes/Footer.astro";
 ---
 
 <html lang="en">
@@ -19,7 +19,8 @@
             crossorigin="anonymous"></script>
         <title>Toyosu</title>
     </head>
-    <body>
+    <body class="bg-black">
         <slot />
+        <Footer />
     </body>
 </html>
