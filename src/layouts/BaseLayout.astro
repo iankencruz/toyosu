@@ -1,5 +1,6 @@
 ---
 import Footer from "../includes/Footer.astro";
+import Nav from "../includes/Nav.astro";
 ---
 
 <html lang="en">
@@ -24,8 +25,13 @@ import Footer from "../includes/Footer.astro";
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
         />
+        <script
+            is:inline
+            defer
+            src="https://unpkg.com/alpinejs@latest/dist/cdn.min.js"></script>
     </head>
     <body class="bg-black">
+        <Nav />
         <slot />
         <Footer />
     </body>
